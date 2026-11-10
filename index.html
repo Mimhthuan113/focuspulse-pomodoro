@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FocusPulse - Minimalist Pomodoro Timer & Micro-Task Companion" />
+  <title>FocusPulse | Minimalist Pomodoro & Focus Companion</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>FocusPulse</h1>
+          <span class="tagline">Smart Pomodoro & Micro-Task Companion</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" class="icon-button" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Grid Layout -->
+    <main class="main-layout">
+      <!-- Left Column: Timer Section -->
+      <section class="card timer-card" aria-label="Pomodoro Timer">
+        <!-- Mode Tabs -->
+        <div class="mode-tabs" role="tablist">
+          <button class="mode-tab active" data-mode="focus" role="tab" aria-selected="true">Focus (25m)</button>
+          <button class="mode-tab" data-mode="shortBreak" role="tab" aria-selected="false">Short Break (5m)</button>
+          <button class="mode-tab" data-mode="longBreak" role="tab" aria-selected="false">Long Break (15m)</button>
+        </div>
+
+        <!-- Timer Display Circle -->
+        <div class="timer-display-wrapper">
+          <svg class="progress-ring" viewBox="0 0 240 240" width="240" height="240">
+            <circle class="progress-ring-bg" cx="120" cy="120" r="105" stroke-width="10" />
+            <circle id="progress-circle" class="progress-ring-fg" cx="120" cy="120" r="105" stroke-width="10" />
+          </svg>
+          <div class="timer-center-content">
+            <div id="time-display" class="time-display">25:00</div>
+            <div id="mode-badge" class="mode-badge">Deep Focus</div>
+          </div>
+        </div>
+
+        <!-- Timer Controls -->
+        <div class="timer-controls">
+          <button id="start-btn" class="btn btn-primary">
+            <span class="btn-icon">▶</span>
+            <span id="start-btn-label">Start Focus</span>
+          </button>
+          <button id="reset-btn" class="btn btn-secondary" title="Reset timer">
+            <span class="btn-icon">↺</span> Reset
+          </button>
+          <button id="chime-test-btn" class="btn btn-ghost" title="Test notification sound">
+            🔔 Test Chime
+          </button>
+        </div>
+
+        <!-- Daily Stats Tracker -->
+        <div class="stats-bar">
+          <div class="stat-item">
+            <span class="stat-number" id="stats-sessions">0</span>
+            <span class="stat-label">Focus Sessions Today</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" id="stats-minutes">0</span>
+            <span class="stat-label">Minutes Focused</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Micro-Tasks Section -->
+      <section class="card tasks-card" aria-label="Micro-Tasks Tracker">
+        <div class="tasks-header">
+          <h2>Focus Objectives</h2>
+          <span id="tasks-counter" class="tasks-counter">0 tasks</span>
+        </div>
+
+        <!-- Add Task Form -->
+        <form id="task-form" class="task-form">
+          <input
+            type="text"
+            id="task-input"
+            class="task-input"
+            placeholder="What are you working on right now?..."
+            maxlength="200"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" class="btn btn-accent" id="add-task-btn">
+            + Add
+          </button>
+        </form>
+
+        <!-- Tasks Filter & Actions Toolbar -->
+        <div class="tasks-toolbar">
+          <span class="tasks-hint">Break big goals into bite-sized tasks</span>
+          <button id="clear-completed-btn" class="text-link-btn" title="Clear completed tasks">
+            Clear Completed
+          </button>
+        </div>
+
+        <!-- Tasks List -->
+        <div class="tasks-scroll-container">
+          <ul id="task-list" class="task-list" aria-live="polite">
+            <!-- Dynamic task items injected via app.js -->
+          </ul>
+          <div id="empty-state" class="empty-state">
+            <div class="empty-icon">📝</div>
+            <p>No tasks yet. Add a focus objective to get started!</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>
+        Built with <strong>HTML5</strong>, <strong>CSS3</strong> & <strong>Vanilla JavaScript</strong>. 
+        Developed with <strong>Cursor AI</strong> for Global Hack Week: Builders Week.
+      </p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
